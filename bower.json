@@ -1,0 +1,23 @@
+{
+  "name": "SMNote",
+  "description": "",
+  "main": "Index.html",
+  "authors": [
+    "Kamys <nikita.kamyshenko@mail.ru>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "4.0.0-beta.3",
+    "jquery": "^3.2.1",
+    "move-js": "^0.4.0"
+  }
+}
