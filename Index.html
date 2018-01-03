@@ -8,7 +8,6 @@
 <body>
 <div>
     <div id="workspace" style="width: 100%; height: 100%; display: block; position: absolute;">
-        <div id="Object1" class="vobject square"></div>
     </div>
 </div>
 <style type="text/css">
@@ -24,47 +23,65 @@
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/move-js/move.min.js"></script>
 <script>
-    function VObject() {
+    function VObject(id) {
+        let element = $("#Object"+id);
+        let isSelect = false;
+        let offsetLeft = 0;
+        let offsetTop = 0;
+        init();
 
+        this.resetSelect = function () {
+            isSelect = false;
+        };
+
+        this.getSelect = function () {
+            return isSelect;
+        };
+
+        this.move = function (x, y) {
+            move("#Object"+id)
+                .to(x + offsetLeft, y + offsetTop)
+                .duration('0.1s')
+                .end();
+        };
+
+        function init() {
+            $('#workspace').append(`<div id="Object${id}" class="vobject square"><h1>${id}</h1></div>` );
+            element = $("#Object"+id);
+            element.mousedown(selectElement);
+        }
+
+        function selectElement(e) {
+            isSelect = true;
+            let offset = element.offset();
+            offsetLeft = offset.left - e.clientX;
+            offsetTop = offset.top - e.clientY;
+        }
     }
 
-    let objectOffset = [0, 0];
-    let vObject;
-    let isDown = false;
+    let listVobject = [];
+    listVobject.push(new VObject(listVobject.length));
+    listVobject.push(new VObject(listVobject.length));
+    listVobject.push(new VObject(listVobject.length));
+    listVobject.push(new VObject(listVobject.length));
+    listVobject.push(new VObject(listVobject.length));
 
-    vObject = $("#Object1");
 
-    vObject.mousedown(mousedown);
     let workspace = $('#workspace');
     workspace.mouseup(mouseup);
     workspace.mousemove(mousemove);
 
-    function mousedown(e) {
-        isDown = true;
-        let offset = vObject.offset();
-        let offsetLeft = offset.left - e.clientX;
-        let offsetTop = offset.top - e.clientY;
-        objectOffset = [
-            offsetLeft,
-            offsetTop
-        ];
-    }
-
     function mouseup() {
-        isDown = false;
+        listVobject.forEach(value => value.resetSelect())
     }
 
 
     function mousemove(event) {
-        let mousePositionX = event.clientX + objectOffset[0];
-        let mousePositionY = event.clientY + objectOffset[1];
-
-        if (isDown) {
-            move('#Object1')
-                .to(mousePositionX, mousePositionY)
-                .duration('0.1s')
-                .end();
-        }
+        listVobject.forEach(value => {
+            if (value.getSelect()) {
+                value.move(event.clientX, event.clientY);
+            }
+        });
     }
 
 </script>
