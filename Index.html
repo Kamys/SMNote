@@ -3,27 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <title>SMNote</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/move-js/move.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <div class="col-12" id="workspace">
+<div>
+    <div id="workspace" style="width: 100%; height: 100%; display: block; position: absolute;">
         <div id="Object1" class="vobject square"></div>
     </div>
 </div>
-<script>
-
-</script>
 <style type="text/css">
     .square {
         width: 50px;
         height: 50px;
         background: darkgray;
         border: 2px solid black;
+        display: block;
+        position: absolute;
     }
 </style>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/move-js/move.min.js"></script>
+<script>
+    function VObject() {
+
+    }
+
+    let objectOffset = [0, 0];
+    let vObject;
+    let isDown = false;
+
+    vObject = $("#Object1");
+
+    vObject.mousedown(mousedown);
+    let workspace = $('#workspace');
+    workspace.mouseup(mouseup);
+    workspace.mousemove(mousemove);
+
+    function mousedown(e) {
+        isDown = true;
+        let offset = vObject.offset();
+        let offsetLeft = offset.left - e.clientX;
+        let offsetTop = offset.top - e.clientY;
+        objectOffset = [
+            offsetLeft,
+            offsetTop
+        ];
+    }
+
+    function mouseup() {
+        isDown = false;
+    }
+
+
+    function mousemove(event) {
+        let mousePositionX = event.clientX + objectOffset[0];
+        let mousePositionY = event.clientY + objectOffset[1];
+
+        if (isDown) {
+            move('#Object1')
+                .to(mousePositionX, mousePositionY)
+                .duration('0.1s')
+                .end();
+        }
+    }
+
+</script>
 </body>
 </html>
