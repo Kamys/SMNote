@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>SMNote</title>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </head>
+
 <body>
 <div>
-    <div id="workspace" style="width: 100%; height: 100%; display: block; position: absolute;">
+    <div id="workspace" ondrop="alert('hello');" style="width: 100%; height: 100%; display: block; position: absolute;">
     </div>
 </div>
 <style type="text/css">
@@ -19,43 +20,44 @@
         display: block;
         position: absolute;
     }
+
+    .square-text {
+        text-align: center;
+        vertical-align: middle;
+        line-height: 90px;
+    }
+
+    .noselect {
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currentlys
+                              supported by Chrome and Opera */
+    }
 </style>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="bower_components/move-js/move.min.js"></script>
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/velocity/velocity.min.js"></script>
+<script src="./bower_components/jquery-ui/jquery-ui.min.js"></script>
 <script>
     function VObject(id) {
-        let element = $("#Object"+id);
-        let isSelect = false;
-        let offsetLeft = 0;
-        let offsetTop = 0;
+        let element;
         init();
 
-        this.resetSelect = function () {
-            isSelect = false;
-        };
-
-        this.getSelect = function () {
-            return isSelect;
-        };
-
-        this.move = function (x, y) {
-            move("#Object"+id)
-                .to(x + offsetLeft, y + offsetTop)
-                .duration('0.1s')
-                .end();
-        };
-
         function init() {
-            $('#workspace').append(`<div id="Object${id}" class="vobject square"><h1>${id}</h1></div>` );
-            element = $("#Object"+id);
-            element.mousedown(selectElement);
-        }
-
-        function selectElement(e) {
-            isSelect = true;
-            let offset = element.offset();
-            offsetLeft = offset.left - e.clientX;
-            offsetTop = offset.top - e.clientY;
+            // language=HTML
+            element = $(`<div id="Object${id}" class="vobject square">
+                            <h1 class="noselect square-text">${id}</h1>
+                        </div>`);
+            element.draggable();
+            $('#workspace').append(element);
         }
     }
 
@@ -63,27 +65,7 @@
     listVobject.push(new VObject(listVobject.length));
     listVobject.push(new VObject(listVobject.length));
     listVobject.push(new VObject(listVobject.length));
-    listVobject.push(new VObject(listVobject.length));
-    listVobject.push(new VObject(listVobject.length));
-
-
-    let workspace = $('#workspace');
-    workspace.mouseup(mouseup);
-    workspace.mousemove(mousemove);
-
-    function mouseup() {
-        listVobject.forEach(value => value.resetSelect())
-    }
-
-
-    function mousemove(event) {
-        listVobject.forEach(value => {
-            if (value.getSelect()) {
-                value.move(event.clientX, event.clientY);
-            }
-        });
-    }
-
 </script>
 </body>
+
 </html>
