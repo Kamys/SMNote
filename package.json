@@ -1,0 +1,8 @@
+{
+  "name": "SMMote",
+  "version": "0.0.1",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.15.0"
+  }
+}

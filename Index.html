@@ -11,24 +11,16 @@
     <div id="workspace">
     </div>
 </div>
+<link rel="stylesheet" href="/bower_components/jquery-ui/themes/base/all.css">
 <link rel="stylesheet" href="/common.blocks/workspace/css/workspace.css">
 <link rel="stylesheet" href="/common.blocks/workspace/css/workspace__v-object.css">
 <link rel="stylesheet" href="/common.blocks/workspace/css/workspace__v-text.css">
-<link rel="stylesheet" href="/bower_components/jquery-ui/themes/base/all.css">
 
-<script src="/common.blocks/workspace/js/workspace__v-object.js"></script>
-<script src="/common.blocks/workspace/js/workspace__v-text.js"></script>
-<script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
 <script src="/bower_components/jquery-ui/jquery-ui.js"></script>
-<script>
-    window.addEventListener('paste', function (event) {
-        event.preventDefault();
-        const data = event.clipboardData.getData('text');
-        console.log(data);
-        new VText(data);
-    });
-</script>
+<script src="/common.blocks/workspace/js/workspace__v-object.js"></script>
+<script src="/common.blocks/workspace/js/workspace__v-text.js"></script>
+<script src="/common.blocks/workspace/js/workspace.js"></script>
 </body>
 
 </html>
