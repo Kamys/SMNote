@@ -11,9 +11,9 @@
     <div id="workspace">
     </div>
 </div>
-<link rel="stylesheet" href="./common.blocks/workspace/workspace.css">
-<link rel="stylesheet" href="./common.blocks/workspace/workspace__v-object.css">
-<link rel="stylesheet" href="./common.blocks/workspace/workspace__v-text.css">
+<link rel="stylesheet" href="common.blocks/workspace/css/workspace.css">
+<link rel="stylesheet" href="common.blocks/workspace/css/workspace__v-object.css">
+<link rel="stylesheet" href="common.blocks/workspace/css/workspace__v-text.css">
 <link rel="stylesheet" href="./bower_components/jquery-ui/themes/base/all.css">
 <script src="./bower_components/jquery/dist/jquery.min.js"></script>
 <script src="./bower_components/jquery-ui/jquery-ui.js"></script>
@@ -34,7 +34,7 @@
         init();
 
         function init() {
-            element = $(`<div id="Object${generateId()}" class="workspace__vobject"></div>`);
+            element = $(`<div id="Object${generateId()}" class="workspace__v-object"></div>`);
             let workspace = $('#workspace');
             element.draggable({
                 containment: workspace,
@@ -51,7 +51,7 @@
         }
 
         function focused() {
-            $(this).toggleClass('v-object_focused');
+            $(this).toggleClass('workspace__v-object_focused');
         }
 
         this.getElement = function () {
@@ -71,7 +71,7 @@
                 if (textArea) {
                     return;
                 }
-                textArea = $(`<textarea class="workspace__v-text_noresize"></textarea>`);
+                textArea = $(`<textarea class="workspace__v-text workspace__v-text_noresize"></textarea>`);
                 textArea.val(element.text());
                 element.hide();
                 element.after(textArea);
