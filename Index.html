@@ -8,7 +8,7 @@
 
 <body>
 <div>
-    <div id="workspace" ondrop="alert('hello');">
+    <div id="workspace">
     </div>
 </div>
 <style type="text/css">
@@ -22,9 +22,11 @@
     .vobject {
         width: 100px;
         height: 100px;
-        /*background: darkgray;
-        border: 2px solid black;*/
         position: absolute !important;
+    }
+
+    .vobject_focused{
+        border: 1px solid grey;
     }
 
     .square-text {
@@ -65,8 +67,7 @@
 </style>
 <link rel="stylesheet" href="./bower_components/jquery-ui/themes/base/all.css">
 <script src="./bower_components/jquery/dist/jquery.min.js"></script>
-<script src="./bower_components/velocity/velocity.min.js"></script>
-<script src="./bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="./bower_components/jquery-ui/jquery-ui.js"></script>
 <script>
 
     let idCount;
@@ -77,6 +78,10 @@
     }
 
     function VObject() {
+        /**
+         * @type {jQuery}
+         * @
+         */
         let element;
         init();
 
@@ -84,12 +89,18 @@
             element = $(`<div id="Object${generateId()}" class="vobject"></div>`);
             let workspace = $('#workspace');
             element.draggable({
-                containment: workspace
+                containment: workspace,
+                start: focused,
+                stop: focused
             });
             element.resizable({
                 autoHide: false, containment: workspace
             });
             workspace.append(element);
+        }
+
+        function focused() {
+            $(this).toggleClass('vobject_focused');
         }
 
         this.getElement = function () {
@@ -114,6 +125,7 @@
                 element.hide();
                 element.after(textArea);
 
+                textArea.focus();
                 textArea.on("blur", function () {
                     if(!textArea){
                         return;
@@ -125,7 +137,6 @@
                     textArea = null;
                 });
             });
-
 
             vObject.getElement().append(element)
         }
