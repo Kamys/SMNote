@@ -1,0 +1,9 @@
+.workspace__vobject {
+    width: 100px;
+    height: 100px;
+    position: absolute !important;
+}
+
+.v-object_focused {
+    border: 1px solid grey;
+}
