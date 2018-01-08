@@ -4,6 +4,15 @@
   "description": "Note editor",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^4.15.0"
+    "babel-core": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "del": "latest",
+    "eslint": "^4.15.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^3.0.0"
   }
 }
