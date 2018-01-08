@@ -4,6 +4,10 @@
   "description": "Note editor",
   "dependencies": {},
   "devDependencies": {
-    "eslint": "^4.15.0"
+    "chromedriver": "^2.34.1",
+    "env2": "^2.2.0",
+    "eslint": "^4.15.0",
+    "nightwatch": "^0.9.19",
+    "selenium-server": "^3.8.1"
   }
 }

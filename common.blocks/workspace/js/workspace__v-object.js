@@ -1,4 +1,4 @@
-let idCount;
+let idCount = 0;
 
 function generateId() {
 	idCount++;

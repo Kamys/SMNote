@@ -1,4 +1,6 @@
 workspace();
+
+
 function workspace() {
 	let element;
 	init();
@@ -11,5 +13,8 @@ function workspace() {
 			let pastText = new VText(data);
 			element.append(pastText.getView());
 		});
+
+		let pastText = new VText('Hello world it SMNote!!');
+		element.append(pastText.getView());
 	}
 }
