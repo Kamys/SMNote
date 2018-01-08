@@ -1,10 +1,11 @@
 function VText(text) {
 	let element;
+	let vObject;
 	init();
 
 	function init() {
 		element = $(`<p class="workspace__v-text workspace__v-text_noselect">${text}</p>`);
-		let vObject = new VObject();
+		vObject = new VObject();
 		let textArea;
 		vObject.getElement().dblclick(function () {
 			if (textArea) {
@@ -29,4 +30,8 @@ function VText(text) {
 
 		vObject.getElement().append(element);
 	}
+
+	this.getView= function () {
+		return vObject.getElement();
+	};
 }
