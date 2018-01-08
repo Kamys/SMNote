@@ -14,7 +14,6 @@ function VObject() {
 
 	function init() {
 		element = $(`<div id="Object${generateId()}" class="workspace__v-object"></div>`);
-		let workspace = $('#workspace');
 		element.draggable({
 			start: focused,
 			stop: focused
@@ -35,7 +34,7 @@ function VObject() {
 	 * @param {jQuery} content
 	 */
 	this.addContent = function (content) {
-
+		element.append(content);
 	};
 
 	this.getElement = function () {

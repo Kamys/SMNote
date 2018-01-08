@@ -28,7 +28,7 @@ function VText(text) {
 			});
 		});
 
-		vObject.getElement().append(element);
+		vObject.addContent(element);
 	}
 
 	this.getView= function () {
