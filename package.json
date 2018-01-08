@@ -1,6 +1,7 @@
 {
-  "name": "SMMote",
+  "name": "SMNote",
   "version": "0.0.1",
+  "description": "Note editor",
   "dependencies": {},
   "devDependencies": {
     "eslint": "^4.15.0"
