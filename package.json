@@ -9,5 +9,8 @@
     "eslint": "^4.15.0",
     "nightwatch": "^0.9.19",
     "selenium-server": "^3.8.1"
+  },
+  "scripts": {
+    "test-ui": "nightwatch --config nightwatch.conf.js"
   }
 }
