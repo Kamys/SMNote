@@ -1,37 +1,25 @@
 function VText(text) {
-	let element;
+	let $element;
 	let vObject;
 	init();
 
 	function init() {
-		element = $(`<p class="workspace__v-text workspace__v-text_noselect">${text}</p>`);
+		$element = $(`<div class="workspace__v-text" contenteditable="true">${text}</div>`);
+
 		vObject = new VObject();
-		let textArea;
-		vObject.getElement().dblclick(function () {
-			if (textArea) {
-				return;
-			}
-			textArea = $('<textarea class="workspace__v-text workspace__v-text_noresize"></textarea>');
-			textArea.val(element.text());
-			element.hide();
-			element.after(textArea);
-
-			textArea.focus();
-			textArea.on('blur', function () {
-				if (!textArea) {
-					return;
-				}
-				element.text(textArea.val());
-				element.show();
-				textArea.remove();
-				textArea = null;
-			});
+		$element.click(function () {
+			vObject.getElement().draggable({disabled: true});
+			$element.focus();
 		});
-
-		vObject.addContent(element);
+		$element.blur(function () {
+			vObject.getElement().draggable({disabled: false});
+		});
+		let $label = $('<div style="width: 100%; height: 15px; background-color: #0b58a2"></div>');
+		vObject.addContent($label);
+		vObject.addContent($element);
 	}
 
-	this.getView= function () {
+	this.getView = function () {
 		return vObject.getElement();
 	};
 }

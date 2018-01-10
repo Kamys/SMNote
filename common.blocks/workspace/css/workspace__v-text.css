@@ -20,8 +20,16 @@
                           supported by Chrome and Opera */
 }
 
-.workspace__v-text_noresize {
+.workspace__v-text_no-resize {
     resize: none;
+}
+
+.workspace__v-text_no-outline{
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 
 /*
