@@ -1,6 +1,8 @@
 function VText(text) {
-	let $element;
-	let vObject;
+	/**
+	 * Contain all element
+	 */
+	let $blockMain;
 	let autoHideLabel = true;
 	init();
 
@@ -8,35 +10,37 @@ function VText(text) {
 		let $label = $('<div style="width: 100%; height: 15px; background-color: #0b58a2"></div>');
 		if (autoHideLabel) {
 			$label.css('background-color', 'rgba(0, 125, 215, 0)');
-			vObject.getElement().mousemove(function () {
+			$blockMain.mousemove(function () {
 				$label.css('background-color', '#0b58a2');
 
 			});
-			vObject.getElement().mouseout(function () {
+			$blockMain.mouseout(function () {
 				$label.css('background-color', 'rgba(0, 125, 215, 0)');
 			});
 		}
 		return $label;
 	}
 
+	/**
+	 * @returns {jQuery} Use for edit text.
+	 */
+	function createEditText() {
+		return $(`<div class="workspace__v-text__edit-text" contenteditable="true">${text}</div>`);
+	}
+
 	function init() {
-		$element = $(`<div class="workspace__v-text" contenteditable="true">${text}</div>`);
-
-		vObject = new VObject();
-		$element.click(function () {
-			vObject.getElement().draggable({disabled: true});
-			$element.focus();
-		});
-		$element.blur(function () {
-			vObject.getElement().draggable({disabled: false});
-		});
+		$blockMain = $('<div class="v-text"></div>');
 		let $label = createLabel();
+		$blockMain.draggable({handle: $label});
+		$blockMain.resizable({
+			autoHide: true
+		});
 
-		vObject.addContent($label);
-		vObject.addContent($element);
+		$blockMain.append($label);
+		$blockMain.append(createEditText());
 	}
 
 	this.getView = function () {
-		return vObject.getElement();
+		return $blockMain;
 	};
 }

@@ -14,10 +14,7 @@ function VObject() {
 
 	function init() {
 		element = $(`<div id="Object${generateId()}" class="workspace__v-object"></div>`);
-		element.draggable({
-			start: focused,
-			stop: focused
-		});
+
 		element.resizable({
 			autoHide: false,
 			start: focused,

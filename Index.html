@@ -9,7 +9,12 @@
 <body>
 <div>
     <div id="workspace">
+        <div id="div1">
+            <div id="div2" style="width: 100px; height: 100px; background-color: aqua"> Div 1</div>
+            <div id="div3" style="width: 100px; height: 100px; background-color: brown"> Div 2</div>
+        </div>
     </div>
+
 </div>
 <link rel="stylesheet" href="/bower_components/jquery-ui/themes/base/all.css">
 <link rel="stylesheet" href="/common.blocks/workspace/css/workspace.css">
@@ -21,6 +26,8 @@
 <script src="/common.blocks/workspace/js/workspace__v-object.js"></script>
 <script src="/common.blocks/workspace/js/workspace__v-text.js"></script>
 <script src="/common.blocks/workspace/js/workspace.js"></script>
+<script>
+$('#div1').draggable({handle: '#div2'})
+</script>
 </body>
-
 </html>
