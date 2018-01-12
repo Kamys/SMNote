@@ -8,21 +8,30 @@ $(document).mousemove(function (event) {
 	mouseY = event.clientY;
 });
 
+
 function workspace() {
-	let element;
+	let $element;
+	let viewList = [];
 	init();
 
 	function init() {
-		element = $('#workspace');
+		$element = $('#workspace');
+
 		window.addEventListener('paste', function (event) {
 			event.preventDefault();
-			const data = event.clipboardData.getData('text');
-			let pastText = new VText(xssFilters.inHTMLData(data));
-			pastText.getView().css({top: mouseY - 50, left: mouseX - 50, position:'absolute'});
-			element.append(pastText.getView());
+			const data = xssFilters.inHTMLData(event.clipboardData.getData('text'));
+
+			let view = new VText(data).getView();
+			view.css({top: mouseY - 50, left: mouseX - 50, position: 'absolute'});
+			add(view);
 		});
 
-		let pastText = new VText('Hello world it SMNote!!');
-		element.append(pastText.getView());
+		add(new VText('Hello world it SMNote!!').getView());
+	}
+
+	function add(view) {
+		viewList.push(view);
+		$element.append(view);
+		view.attr('id','VObject' + viewList.length);
 	}
 }

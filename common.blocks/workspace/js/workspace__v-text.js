@@ -40,6 +40,7 @@ function VText(text) {
 		$blockMain.append(createEditText());
 	}
 
+	//TODO: replace on getView
 	this.getView = function () {
 		return $blockMain;
 	};

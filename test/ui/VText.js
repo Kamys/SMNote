@@ -1,5 +1,5 @@
 module.exports = {
-	'CanVObjectDragAndDrop': function (client) {
+	'CanVTextDragAndDrop': function (client) {
 		let elementSelector = '#Object1';
 
 		client
@@ -15,7 +15,7 @@ module.exports = {
 
 		client.end();
 	},
-	'CanVObjectResizable': function (client) {
+	'CanVTextResizable': function (client) {
 		let elementSelector = '#Object1';
 		let iconForResizableSelector = '.ui-icon-gripsmall-diagonal-se';
 
