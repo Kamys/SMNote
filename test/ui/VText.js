@@ -1,22 +1,25 @@
+let elementSelector = '#VObject1';
+var expect = require('chai').expect;
 module.exports = {
 	'CanVTextDragAndDrop': function (client) {
-		let elementSelector = '#Object1';
-
 		client
 			.url('http://127.0.0.1:8000/Index.html')
 			.assert.cssClassPresent(elementSelector, 'ui-draggable')
-			.moveToElement(elementSelector, 0, 0)
+			.moveToElement('.v-text__edit-label', 0, 0)
 			.mouseButtonDown(0)
 			.moveToElement('body', 300, 300)
 			.mouseButtonUp(0);
 
-		client.expect.element(elementSelector).to.have.css('left').which.equals('300px');
-		client.expect.element(elementSelector).to.have.css('top').which.equals('300px');
+		client.getLocation(elementSelector, function(result) {
+			this.assert.equal(typeof result, 'object');
+			this.assert.equal(result.status, 0);
+			this.assert(result.value.x).to.be.true;
+			this.assert.equal(result.value.y, 200);
+		});
 
 		client.end();
 	},
 	'CanVTextResizable': function (client) {
-		let elementSelector = '#Object1';
 		let iconForResizableSelector = '.ui-icon-gripsmall-diagonal-se';
 
 		client

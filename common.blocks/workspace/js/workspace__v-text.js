@@ -7,7 +7,7 @@ function VText(text) {
 	init();
 
 	function createLabel() {
-		let $label = $('<div style="width: 100%; height: 15px; background-color: #0b58a2"></div>');
+		let $label = $('<div class="v-text__edit-label"></div>');
 		if (autoHideLabel) {
 			$label.css('background-color', 'rgba(0, 125, 215, 0)');
 			$blockMain.mousemove(function () {
