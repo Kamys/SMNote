@@ -17,7 +17,7 @@ function workspace() {
 		window.addEventListener('paste', function (event) {
 			event.preventDefault();
 			const data = event.clipboardData.getData('text');
-			let pastText = new VText(data);
+			let pastText = new VText(xssFilters.inHTMLData(data));
 			pastText.getView().css({top: mouseY - 50, left: mouseX - 50, position:'absolute'});
 			element.append(pastText.getView());
 		});
