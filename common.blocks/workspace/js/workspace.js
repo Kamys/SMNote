@@ -1,37 +1,43 @@
-workspace();
+let mouseTracker = new MouseTracker();
 
-let mouseX;
-let mouseY;
-
-$(document).mousemove(function (event) {
-	mouseX = event.clientX;
-	mouseY = event.clientY;
-});
-
-
-function workspace() {
+let Workspace = function () {
 	let $element;
 	let viewList = [];
 	init();
 
 	function init() {
 		$element = $('#workspace');
-
-		window.addEventListener('paste', function (event) {
-			event.preventDefault();
-			const data = xssFilters.inHTMLData(event.clipboardData.getData('text'));
-
-			let view = new VText(data).getView();
-			view.css({top: mouseY - 50, left: mouseX - 50, position: 'absolute'});
-			add(view);
-		});
-
-		add(new VText('Hello world it SMNote!!').getView());
+		addElement(new VText('Hello world it SMNote!!').getView());
 	}
 
-	function add(view) {
+	function addElement(view) {
 		viewList.push(view);
 		$element.append(view);
-		view.attr('id','VObject' + viewList.length);
+		view.css({top: mouseTracker.getY() - 50, left: mouseTracker.getX() - 50, position: 'absolute'});
+		view.attr('id', 'VObject' + viewList.length);
 	}
-}
+
+	this.addVText = function (text) {
+		const filteredText = xssFilters.inHTMLData(text);
+
+		let view = new VText(filteredText).getView();
+		addElement(view);
+	};
+
+	/**
+	 *
+	 * @param file {File}
+	 * @constructor
+	 */
+	this.addVImage = function (file) {
+		if (file !== null) {
+			const reader = new FileReader();
+			reader.onload = function (event) {
+				let vImage = new VImage(event.target.result);
+				addElement(vImage.getView());
+			};
+			reader.readAsDataURL(file);
+		}
+	};
+};
+
