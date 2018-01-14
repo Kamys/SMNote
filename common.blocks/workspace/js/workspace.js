@@ -6,7 +6,7 @@ let Workspace = function () {
 	init();
 
 	function init() {
-		$element = $('#workspace');
+		$element = $('.workspace');
 		addElement(new VText('Hello world it SMNote!!').getView());
 	}
 

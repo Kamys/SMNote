@@ -25,7 +25,7 @@ function VText(text) {
 	 * @returns {jQuery} Use for edit text.
 	 */
 	function createEditText() {
-		return $(`<div class="workspace__v-text__edit-text" contenteditable="true">${text}</div>`);
+		return $(`<div class="v-text__edit-text" contenteditable="true">${text}</div>`);
 	}
 
 	function init() {

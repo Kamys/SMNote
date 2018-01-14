@@ -1,11 +1,16 @@
-.workspace__v-text__edit-text {
+.v-text {
+    width: 100px;
+    height: 100px;
+}
+
+.v-text__edit-text {
     word-wrap: break-word;
     outline:none;
     width: 100%;
     height: 100%;
 }
 
-.workspace__v-text_noselect {
+.v-text_noselect {
     -webkit-touch-callout: none;
     /* iOS Safari */
     -webkit-user-select: none;
@@ -21,11 +26,11 @@
                           supported by Chrome and Opera */
 }
 
-.workspace__v-text_no-resize {
+.v-text_no-resize {
     resize: none;
 }
 
-.workspace__v-text_no-outline{
+.v-text_no-outline{
     overflow: auto;
     outline: none;
     -webkit-box-shadow: none;
@@ -41,11 +46,6 @@
 .ui-resizable-se {
     width: 20px !important;
     height: 20px !important;
-}
-
-.v-text {
-    width: 100px;
-    height: 100px;
 }
 
 .v-text__edit-label {
