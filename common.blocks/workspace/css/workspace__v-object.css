@@ -1,9 +1,11 @@
-.workspace__v-object {
-    width: 100px;
-    height: 100px;
-    position: absolute !important;
+.v-object {
+    border: 2px dashed rgba(250,255,247,0);
+    padding: 3px;
+    margin-bottom: 5px;
 }
 
-.workspace__v-object_focused {
-    border: 1px solid grey;
+.v-object:hover {
+    border: 2px dashed #1E90FF;
+    padding: 3px;
+    margin-bottom: 5px;
 }

@@ -29,7 +29,7 @@ function VText(text) {
 	}
 
 	function init() {
-		$blockMain = $('<div class="v-text"></div>');
+		$blockMain = $('<div class="v-object v-text"></div>');
 		let $label = createLabel();
 		$blockMain.draggable({handle: $label});
 		$blockMain.resizable({

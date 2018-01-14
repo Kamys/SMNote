@@ -3,12 +3,13 @@ let VImage = function (src) {
 	init();
 
 	function init() {
-		$vImage = $('<div></div>');
+		$vImage = $('<div class="v-object v-image"></div>');
 		$vImage.draggable();
+		let $image = $(`<img class="v-image_image" src=${src} />`);
 		$vImage.resizable({
-			autoHide: true
+			autoHide: true,
+			alsoResize: $image
 		});
-		let $image = $(`<img src=${src} />`);
 		$vImage.append($image);
 	}
 
